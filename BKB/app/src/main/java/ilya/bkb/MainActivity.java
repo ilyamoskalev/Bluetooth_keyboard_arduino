@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     BluetoothSocket clientSocket;
     OutputStream outStream;
     LinearLayout ll;
-    //Эта функция запускается автоматически при запуске приложения
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
