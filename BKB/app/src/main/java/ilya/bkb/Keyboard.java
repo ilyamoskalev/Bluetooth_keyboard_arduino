@@ -214,7 +214,7 @@ public class Keyboard extends Activity {
             outStream = clientSocket.getOutputStream();
         }
         catch (IOException e) {
-            //Если есть ошибки, выводим их в лог
+            
             Log.d("BLUETOOTH", e.getMessage());
         }
     }
@@ -464,7 +464,6 @@ public class Keyboard extends Activity {
                     outStream.write(value);
                 }
                 catch (IOException e) {
-                    //Если есть ошибки, выводим их в лог
                     Log.d("BLUETOOTH", e.getMessage());
                 }
 
