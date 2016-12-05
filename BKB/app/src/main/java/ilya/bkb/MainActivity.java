@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 
 
     private static final int REQUEST_ENABLE_BT = 1;
-    //Сокет, с помощью которого мы будем отправлять данные на Arduino
+   
 
     EditText edt1;
     Button btn1;
@@ -54,11 +54,11 @@ public class MainActivity extends Activity {
         ll.setBackgroundColor(Color.rgb(135 , 206, 250));
         btn1.setEnabled(false);
         if (bluetooth.isEnabled()) {
-            // Bluetooth включен. Работаем.
+            
         }
         else
         {
-            // Bluetooth выключен. Предложим пользователю включить его.
+            
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 
     public void clickBtn1(View v) {
 
-        //Пытаемся послать данные
+        
         try {
             outStream = clientSocket.getOutputStream();
             String out = edt1.getText().toString();
@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
             edt1.setText("");
 
         } catch (IOException e) {
-            //Если есть ошибки, выводим их в лог
+            
             Log.d("BLUETOOTH", e.getMessage());
         }
     }
@@ -89,20 +89,17 @@ public class MainActivity extends Activity {
 
     public void clickBtn2(View v) {
         try{
-            //Устройство с данным адресом - наш Bluetooth Bee
-            //Адрес опредеяется следующим образом: установите соединение
-            //между ПК и модулем (пин: 1234), а затем посмотрите в настройках
-            //соединения адрес модуля. Скорее всего он будет аналогичным.
+            
             device = bluetooth.getRemoteDevice("98:D3:31:FD:1C:DA");
 
-            //Инициируем соединение с устройством
+            
             Method m = device.getClass().getMethod(
                     "createRfcommSocket", new Class[] {int.class});
 
             clientSocket = (BluetoothSocket) m.invoke(device, 1);
             clientSocket.connect();
 
-            //В случае появления любых ошибок, выводим в лог сообщение
+            
         } catch (IOException e) {
             Log.d("BLUETOOTH", e.getMessage());
         } catch (SecurityException e) {
@@ -117,7 +114,7 @@ public class MainActivity extends Activity {
             Log.d("BLUETOOTH", e.getMessage());
         }
 
-        //Выводим сообщение об успешном подключен
+       
 
 
         Toast.makeText(getApplicationContext(), "CONNECTED", Toast.LENGTH_LONG).show();
